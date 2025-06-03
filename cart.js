@@ -6,6 +6,7 @@ const addProduct = () => {
   ProductName.value = "";
   ProductQuantity.value = "";
   displayProduct(Product, Quantity);
+  saveProduct(Product, Quantity);
 };
 
 const displayProduct = (Product, Quantity) => {
@@ -14,4 +15,30 @@ const displayProduct = (Product, Quantity) => {
   li.innerText = `${Product} : ${Quantity}`;
   ul.appendChild(li);
 };
- consc
+
+const getStoredProduct = () => {
+  let product = {};
+  const storedProduct = localStorage.getItem("product");
+  if (storedProduct) {
+    product = JSON.parse(storedProduct);
+  }
+  return product;
+};
+
+const saveProduct = (Product, Quantity) => {
+  const product = getStoredProduct();
+  product[Product] = Quantity;
+  const productStringified = JSON.stringify(product);
+  localStorage.setItem("product", productStringified);
+};
+
+const persistentDisplay = (Product, Quantity) => {
+  const products = getStoredProduct();
+  console.log(products);
+  for (product in products) {
+    const quantity = products[product];
+    displayProduct(product, quantity);
+  }
+};
+
+persistentDisplay();
