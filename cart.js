@@ -3,14 +3,15 @@ const addProduct = () => {
   const ProductQuantity = document.getElementById("product-quantity");
   const Product = ProductName.value;
   const Quantity = ProductQuantity.value;
-  ProductName.name = "";
-  ProductQuantity.name = "";
+  ProductName.value = "";
+  ProductQuantity.value = "";
   displayProduct(Product, Quantity);
 };
 
 const displayProduct = (Product, Quantity) => {
   const ul = document.getElementById("display-screen");
   const li = document.createElement("li");
-  li.innerText = `${Product} ${Quantity}`;
+  li.innerText = `${Product} : ${Quantity}`;
   ul.appendChild(li);
 };
+ consc
